@@ -10,6 +10,8 @@ import { Grid } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
+const base_url = process.env.REACT_APP_URL_BACKEND;
+
 const theme = createTheme();
 
 function Copyright() {
@@ -51,7 +53,7 @@ const Home = () => {
 
         const verify = async() =>{
             try {
-              const response = await axios.post('http://localhost:3000/verify', {
+              const response = await axios.post(`${base_url}/verify`, {
                 token: localStorage.getItem('token')
               })
               if(response.status == 200){

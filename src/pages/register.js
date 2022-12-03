@@ -13,6 +13,9 @@ import { useNavigate } from 'react-router-dom';
 
 // Abaikan kode di bawah ini
 const theme = createTheme();
+
+const base_url = process.env.REACT_APP_URL_BACKEND;
+
   
 const Register = () => {
   const navigate = useNavigate()
@@ -28,7 +31,7 @@ const Register = () => {
     try {
       // 1. Lakukan Axios POST ke API Register pada backend di bawah ini
       // body yang digunakan adalah username, email, dan password
-      const response = await axios.post('http://localhost:3000/register', {
+      const response = await axios.post(`${base_url}/register`, {
         username: data.get('username'),
         email: data.get('email'),
         password: data.get('password')

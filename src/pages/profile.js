@@ -25,6 +25,8 @@ let theme = createTheme({
     },
 });
 
+const base_url = process.env.REACT_APP_URL_BACKEND;
+
 const Profile = () => {
   const navigate = useNavigate()
     // State untuk mengecek apakah user sudah login atau belum
@@ -48,7 +50,7 @@ const Profile = () => {
         // 2. buat fungsi verifikasi token yang sama seperti di halaman home
         const verify = async() =>{
           try {
-            const response = await axios.post('http://localhost:3000/verify', {
+            const response = await axios.post(`${base_url}/verify`, {
               token: localStorage.getItem('token')
             })
             if(response.status == 200){
@@ -90,7 +92,7 @@ const Profile = () => {
 
         // 2. Hit endpoint logout dengan body jwt yang didapat dari localstorage
         //   dan setelah berhasil, beri alert sukses
-        await axios.post('http://localhost:3000/logout', {
+        await axios.post(`${base_url}/logout`, {
             token: localStorage.getItem('token')
         })
         .then((res) => {
